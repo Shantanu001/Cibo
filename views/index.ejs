@@ -1,0 +1,79 @@
+<html>
+  <head><title></title>
+    <style>
+        body {
+    background-color:white;
+}
+input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    width: 30%;
+    background: #f1f1f1;
+}
+
+        .button {
+            
+    width: 10%;
+    padding: 10px;
+    background: white;
+    color: grey;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+ 
+}
+        #detail_city_name{
+            padding-left:5px;
+            padding-top:50px;
+            font-size:50px;
+            
+        }
+        #detail_city_temp{
+             padding-left:5px;
+            padding-top:50px;
+            font-size:20px;
+            
+        }
+
+
+.button:hover {background-color: grey,color:white}
+
+        h1{
+            font-family:  'Ho
+                efler Text', Georgia, 'Times New Roman', serif;
+ font-weight: normal;
+        font-size: 1.75em;
+ letter-spacing: .2em;
+ line-height: 1.1em;
+ margin:0px;
+            color:grey;
+        }
+        #rest_detail{
+            float:left;
+        }
+</style></head>
+  <body>
+     
+   <center> <form  height="25" action="/" method="post">
+     <br>
+      <input type="text" name="city" placeholder="Search City..">
+      <input class="button" type="submit" value="SHOW">
+       </form>
+      </center>
+       <div id="rest_detail">
+       <%  for(i in rest_list.restaurants){%>
+        <img src="<%=rest_list.restaurants[i].restaurant.featured_image%>" width="200" height="100">
+        <p> Rating:- <%= rest_list.restaurants[i].restaurant.user_rating.aggregate_rating %></p>    
+       <p>  Name:- <%= rest_list.restaurants[i].restaurant.name %></p>
+             <p>  Cuisines:- <%= rest_list.restaurants[i].restaurant.cuisines%></p>
+            <p> Average cost for two :- <%= rest_list.restaurants[i].restaurant.average_cost_for_two %></p>
+        <p>  Address:- <%= rest_list.restaurants[i].restaurant.location.address %></p>
+      
+       <%}%>
+       </div>
+      
+     
+  </body>
+</html>
