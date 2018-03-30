@@ -5,6 +5,7 @@ var request = require('request');
 var app = express();
 var path = require('path');
 //let url = 'https://developers.zomato.com/api/v2.1/cities?q=kolkata';
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
          extended:true
