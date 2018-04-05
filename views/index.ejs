@@ -1,40 +1,46 @@
 <html>
-  <head><title></title>
-      <link type="text/css" rel="stylesheet" href="/css/style.css" media="screen,projection" /> 
-      <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
-      <link href='https://fonts.googleapis.com/css?family= Pompiere' rel='stylesheet'>
+    <head><title></title>
+        <link type="text/css" rel="stylesheet" href="/css/style.css" media="screen,projection" />
+        <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family= Pompiere' rel='stylesheet'>
 
     </head>
-  <body>
-     
-   <center> <form  height="25" action="/" method="post">
-     <br>
-      <input type="text" name="city" placeholder="Search City..">
-      <input class="button" type="submit" value="SHOW">
-       </form>
-      </center>
-      <form method="GET" action='/about'>
-                   <div class="container">
-       <%  for(i in rest_list.restaurants){%>
-                          <div class="item">
-                             <img src="<%=rest_list.restaurants[i].restaurant.featured_image%>">
-                       <center>
-                       <input type="hidden" class="title" value="<%= rest_list.restaurants[i].restaurant.id %>" name="id">
-                           <p class="title" name="title"><%= rest_list.restaurants[i].restaurant.name %>
-        <p class="title"> Rating : <%= rest_list.restaurants[i].restaurant.user_rating.aggregate_rating %></p>    
-                     
-                              </center>
-            <strong><p class="detail">  Cuisines :<%= rest_list.restaurants[i].restaurant.cuisines%></p>
-            <p class="detail"> Average cost for two :<%= rest_list.restaurants[i].restaurant.average_cost_for_two %>(<%= rest_list.restaurants[i].restaurant.currency %>)</p>
-                <p class="detail">  Address : <%= rest_list.restaurants[i].restaurant.location.address %></p></strong>
-                                  <center>   <button class="button5" type="submit">SHOW DETAILS</button> </center>
-                       </div> 
-      <%}%>
-            
-                       
-      </div>
-      </form>
-      
+    <body>
 
-  </body>
+        <center> <form  height="25" action="/" method="post">
+            <br>
+            <input type="text" name="city" placeholder="Search City..">
+            <input class="button" type="submit" value="SHOW">
+            </form>
+        </center>
+        <div class="container">
+            <%  for(i in restaurant_lists.restaurants){%>
+            <div class="item">
+                <img src="<%=restaurant_lists.restaurants[i].restaurant.featured_image%>">
+                <center>
+                    <input type="hidden" id="res_id" class="title" value="<%= restaurant_lists.restaurants[i].restaurant.id %>" name="id">
+                    <p class="title" name="title"><%= restaurant_lists.restaurants[i].restaurant.name %>
+                    <p class="title"> Rating : <%= restaurant_lists.restaurants[i].restaurant.user_rating.aggregate_rating %></p>    
+
+                </center>
+                <strong><p class="detail">  Cuisines :<%= restaurant_lists.restaurants[i].restaurant.cuisines%></p>
+                    <p class="detail"> Average cost for two :<%= restaurant_lists.restaurants[i].restaurant.average_cost_for_two %>(<%= restaurant_lists.restaurants[i].restaurant.currency %>)</p>
+                    <p class="detail">  Address : <%= restaurant_lists.restaurants[i].restaurant.location.address %></p></strong>
+
+            </div> 
+            <%}%>
+
+        </div>
+<center>        <div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#">1</a>
+  <a class="active" href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+</div>
+        </center>
+    </body>
 </html>
