@@ -37,8 +37,7 @@ router.post('/',function(req,res){
                 //console.log(city_id.location_suggestions[i].id);
                 let city_id = city_details.location_suggestions[i].id;
 
-                   var j = i+20;
-                   const obj = {
+                const obj = {
                     url: 'https://developers.zomato.com/api/v2.1/search?entity_id='+city_id+'&entity_type=city&start=0&count=100',
                     method: 'GET',
                     headers: {
@@ -52,19 +51,19 @@ router.post('/',function(req,res){
                         console.log(err);
                     }
                     else
-                        
-                        
+
+
                     {
                         let f = JSON.parse(body);
-                        
-                        
+
+
                         let rest_lists = f;
                         res.render('index',{restaurant_lists:rest_lists});
 
                     }
                 });
 
-        }
+            }
         }
     });
 

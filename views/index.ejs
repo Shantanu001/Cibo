@@ -26,21 +26,10 @@
                 <strong><p class="detail">  Cuisines :<%= restaurant_lists.restaurants[i].restaurant.cuisines%></p>
                     <p class="detail"> Average cost for two :<%= restaurant_lists.restaurants[i].restaurant.average_cost_for_two %>(<%= restaurant_lists.restaurants[i].restaurant.currency %>)</p>
                     <p class="detail">  Address : <%= restaurant_lists.restaurants[i].restaurant.location.address %></p></strong>
-
+                <center><button class="button4" onclick="window.location.href='/about/?id=<%=restaurant_lists.restaurants[i].restaurant.id%>'">Show Details</button></center>
             </div> 
             <%}%>
 
-        </div>
-<center>        <div class="pagination">
-  <a href="#">&laquo;</a>
-  <a href="#">1</a>
-  <a class="active" href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">4</a>
-  <a href="#">5</a>
-  <a href="#">6</a>
-  <a href="#">&raquo;</a>
-</div>
-        </center>
+        </div>      
     </body>
 </html>

@@ -1,8 +1,40 @@
 <html>
     <head>
+        <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
 
     </head>
-    <body>
-        <p>About Page</p>
+    <body  background="/image/background.png">
+        <div  class="row">
+            <div class="col s6 offset-s3 valign">
+                <div  class="card">
+                    <div class="card-image">
+                        <img  src="<%=restaurant_id.featured_image%>">
+                        <span class="card-title"><%= restaurant_id.name %></span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons"><%= restaurant_id.user_rating.aggregate_rating %></i></a>
+                    </div>
+                    <div class="card-content">  
+                        <ul class="collection">
+                            <li class="collection-item"><center>
+                                <a href="<%=restaurant_id.photos_url %>"class="waves-effect waves-light btn red">GALLERY</a>
+                                <a href="<%=restaurant_id.menu_url %>"class="waves-effect waves-light btn green">MENU</a>
+                                <a href="<%=restaurant_id.events_url %>"class="waves-effect waves-light btn blue">EVENTS</a></center>
+                            </li>
+                            <li class="collection-item"> <div class="chip"><p>COST FOR TWO:- <%=restaurant_id.average_cost_for_two%>(<%= restaurant_id.currency%>)</p></div></li>
+                            <li class="collection-item">  <div class="chip"><p>Cuisines:- <%= restaurant_id.cuisines %></p></div></li>
+                            <li class="collection-item"><div class="chip"><p>Address:- <%=restaurant_id.location.address %></p></div></li>
+                            <li class="collection-item"><div class="chip"><p>Customer experience:- <%=restaurant_id.user_rating.rating_text %></p></div></li>
+                        </ul>
+
+
+
+                    </div>
+                    <div class="card-action">
+                        <center>
+                            <a onclick="window.history.back()"class="waves-effect waves-light btn-large">BACK TO HOMEPAGE</a>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
