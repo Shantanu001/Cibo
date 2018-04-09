@@ -24,7 +24,6 @@ router.get('/',function(req,res){
         }
         else
         {
-            console.log(q);
             details = JSON.parse(body);
             //console.log(details); 
             const obj = {
@@ -35,19 +34,6 @@ router.get('/',function(req,res){
                 }
 
             };
-            request(obj,function(err,response,body){
-                if(err)
-                {
-                    console.log(err);
-                }
-                else
-                {
-                    review= JSON.parse(body);
-                    console.log(review);
-                } 
-            });
-            console.log(details);
-            console.log(details.events_url);
             res.render('about.ejs',{restaurant_id:details});
         }
     });
