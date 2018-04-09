@@ -1,0 +1,38 @@
+{
+  "name": "cibo",
+  "version": "1.0.0",
+  "description": "Cibo helps you to find details about all the restaurants in your city.",
+     "engines": {
+    "node": "8.9.1"
+  },
+    "scripts": {
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1",
+    "path": "^0.12.7",
+    "request": "^2.85.0",
+    "zomato": "^1.1.0"
+  },
+    "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "devDependencies": {},
+ 
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shantanu001/Cibo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shantanu001/Cibo/issues"
+  },
+  "homepage": "https://github.com/Shantanu001/Cibo#readme"
+}
