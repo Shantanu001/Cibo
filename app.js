@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var zomato = require('zomato');
 var app = express();
+const port = process.env.PORT||8080;
 var path = require('path');
 var index = require('./routes/index');
 var about = require('./routes/about');
@@ -19,6 +20,6 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 
 
-app.listen(8080);
+app.listen(port);
 console.log("Server started at 8080");
 //console.log("hello");
