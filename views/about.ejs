@@ -22,7 +22,17 @@
                             <li class="collection-item"> <div class="chip"><p>COST FOR TWO:- <%=restaurant_id.average_cost_for_two%>(<%= restaurant_id.currency%>)</p></div></li>
                             <li class="collection-item">  <div class="chip"><p>Cuisines:- <%= restaurant_id.cuisines %></p></div></li>
                             <li class="collection-item"><div class="chip"><p>Address:- <%=restaurant_id.location.address %></p></div></li>
-                            <li class="collection-item"><div class="chip"><p>Customer experience:- <%=restaurant_id.user_rating.rating_text %></p></div></li>
+                               <%  for(i in reviews.user_reviews){%>
+                            <li class="collection-item">
+                             
+                                <img class="circle responsive-img"src="<%=reviews.user_reviews[i].review.user.profile_image%>">
+                                <div class="chip">
+                                    <p><%= reviews.user_reviews[i].review.user.name%>  (<%= reviews.user_reviews[i].review.review_time_friendly%>)</p>
+                                    <p>Rating: <%= reviews.user_reviews[i].review.rating%></p>
+                                    <p>Description: <%= reviews.user_reviews[i].review.review_text%></p>
+                                </div>
+                                <%}%>
+                            </li>
                         </ul>
 
 
@@ -37,4 +47,5 @@
             </div>
         </div>
     </body>
+    <!--<footer><font color="white">&copy;SHANTANU JAISWAL</font></footer>-->
 </html>
