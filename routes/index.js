@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express();
+var url = require('url');
+var loc="";
+var start="";
+let city="";
 var request = require('request');
-router.get('/',function(req,res){
-    res.render('index.ejs',{restaurant_lists:""});
-});
 const obj = {
     url: 'https://developers.zomato.com/api/v2.1/search?entity_id=2&entity_type=city',
     method: 'GET',
@@ -12,10 +13,14 @@ const obj = {
     }
 
 };
-router.post('/',function(req,res){
-    let city = req.body.city;
+router.get('/',function(req,res){
+    res.render('index.ejs',{restaurant_lists:""});
+});
+router.get('/index',function(req,res){
+    loc =  url.parse(req.url,true).query.city;
+    start = url.parse(req.url,true).query.start;
     const obj1 = {
-        url: 'https://developers.zomato.com/api/v2.1/cities?q='+city,
+        url: 'https://developers.zomato.com/api/v2.1/cities?q='+loc,
         method: 'GET',
         headers: {
             "user-key":'e9aca94aa82bdb0e3aae357371dd2958'
@@ -31,14 +36,14 @@ router.post('/',function(req,res){
         }
         else
         {
-            let city_details = JSON.parse(body);
-            for(i in city_details.location_suggestions)
+            let city_detail = JSON.parse(body);
+            for(i in city_detail.location_suggestions)
             {
                 //console.log(city_id.location_suggestions[i].id);
-                let city_id = city_details.location_suggestions[i].id;
+                let city_ids = city_detail.location_suggestions[i].id;
 
                 const obj = {
-                    url: 'https://developers.zomato.com/api/v2.1/search?entity_id='+city_id+'&entity_type=city&start=0&count=100',
+                    url: 'https://developers.zomato.com/api/v2.1/search?entity_id='+city_ids+'&entity_type=city&start='+start+'&count=20',
                     method: 'GET',
                     headers: {
                         "user-key":'e9aca94aa82bdb0e3aae357371dd2958'
@@ -54,11 +59,11 @@ router.post('/',function(req,res){
 
 
                     {
-                        let f = JSON.parse(body);
+                        let info = JSON.parse(body);
 
 
-                        let rest_lists = f;
-                        res.render('index',{restaurant_lists:rest_lists});
+                        let lists = info;
+                        res.render('index',{restaurant_lists:lists});
 
                     }
                 });
@@ -66,6 +71,6 @@ router.post('/',function(req,res){
             }
         }
     });
-
 });
+
 module.exports = router;

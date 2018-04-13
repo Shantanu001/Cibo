@@ -3,51 +3,100 @@
         <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
         <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family= East Sea Dokdo' rel='stylesheet'>
+        <style>
+.pagination {
+    display: inline-block;
+}
 
+.pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+        <script>
+            function city_info()
+            {
+                sessionStorage.City_name = document.getElementById("city_name").value; 
+                sessionStorage.visible="yes";
+                window.location="/index/?city=" + sessionStorage.City_name + "&start=0";
+            }
+            window.addEventListener('load', 
+                                    function() { 
+                if( sessionStorage.visible=="yes")
+                {
+                    document.getElementById("footer").style.visibility='visible';
+                }
+                else
+                {
+                    document.getElementById("footer").style.visibility='hidden';
+                }
+            }, false);
+            function search_info(e)
+            { 
+                
+                sessionStorage.visible="yes";
+                if(e.id=="search_btn0")
+                {window.location="/index/?city=" + sessionStorage.City_name + "&start=0";}
+                else if(e.id=="search_btn1") {window.location="/index/?city=" + sessionStorage.City_name + "&start=20";}
+                else if(e.id=="search_btn2") {window.location="/index/?city=" + sessionStorage.City_name + "&start=40";}
+                else if(e.id=="search_btn3") {window.location="/index/?city=" + sessionStorage.City_name + "&start=60";}
+                else if(e.id=="search_btn4") {window.location="/index/?city=" + sessionStorage.City_name + "&start=80";}
+            }
+        </script>
     </head>
-    <body background="/image/index-back.png">
+    <body background="/image/index-back.jpg">
 
-        <center> <form   action="/" method="post">
-            <input style="width:300px;font-family:East Sea Dokdo;color:white;" class="input-field" type="text" name="city" placeholder="Search City..">
-            <input class="waves-effect waves-light btn" type="submit" value="SHOW">
-            </form>  
+        <center> <!--<form   action="/index" method="get">-->
+            <input id="city_name" style="width:300px;font-family:East Sea Dokdo;color:white;" class="input-field" type="text" name="city" placeholder="Search City..">
+            <input id="search_btn"class="waves-effect waves-light btn" onclick="city_info();" type="submit" value="SHOW">
+
+            <!--  </form> --> 
         </center>
         <div style="display:grid;
-    grid-template-columns:auto auto auto;">
+                    grid-template-columns:auto auto auto;">
             <%  for(i in restaurant_lists.restaurants){%>
             <div class="row">
                 <div class="col s4 m12">
-                         <div  class="z-depth-5">
-                    <div style=" height: 550px; overflow: hidden;" class="card hoverable">
-                        <div  class="card-image">
-                            <img style=" height: 200px; overflow: hidden;"src="<%=restaurant_lists.restaurants[i].restaurant.featured_image%>">
-                            <span  style="font-family:Indie Flower" class="card-title"><%= restaurant_lists.restaurants[i].restaurant.name %></span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons"><%= restaurant_lists.restaurants[i].restaurant.user_rating.aggregate_rating %></i></a>
-                        </div>
-                        <div class="card-content">
+                    <div  class="z-depth-5">
+                        <div style=" height: 550px; overflow: hidden;" class="card hoverable">
+                            <div  class="card-image">
+                                <img style=" height: 200px; overflow: hidden;"src="<%=restaurant_lists.restaurants[i].restaurant.featured_image%>">
+                                <span  style="font-family:Indie Flower" class="card-title"><%= restaurant_lists.restaurants[i].restaurant.name %></span>
+                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons"><%= restaurant_lists.restaurants[i].restaurant.user_rating.aggregate_rating %></i></a>
+                            </div>
+                            <div class="card-content">
 
-                            <ul class="collection">
-                                <li class="collection-item"><p class="detail">  Cuisines :<%= restaurant_lists.restaurants[i].restaurant.cuisines%></p></li>
-                                <li class="collection-item">     <p class="detail"> Average cost for two :<%= restaurant_lists.restaurants[i].restaurant.average_cost_for_two %>(<%= restaurant_lists.restaurants[i].restaurant.currency %>)</p></li>
-                                <li class="collection-item"> <p class="detail">  Address : <%= restaurant_lists.restaurants[i].restaurant.location.address %></p></li>
-                                <center>  <li class="collection-item"> <a onclick="window.location.href='/about/?id=<%=restaurant_lists.restaurants[i].restaurant.id%>'"class="waves-effect waves-light btn-small">SHOW DETAILS</a></li></center    >
-                            </ul>
+                                <ul class="collection">
+                                    <li class="collection-item"><p class="detail">  Cuisines :<%= restaurant_lists.restaurants[i].restaurant.cuisines%></p></li>
+                                    <li class="collection-item">     <p class="detail"> Average cost for two :<%= restaurant_lists.restaurants[i].restaurant.average_cost_for_two %>(<%= restaurant_lists.restaurants[i].restaurant.currency %>)</p></li>
+                                    <li class="collection-item"> <p class="detail">  Address : <%= restaurant_lists.restaurants[i].restaurant.location.address %></p></li>
+                                    <center>  <li class="collection-item"> <a onclick="window.location.href='/about/?id=<%=restaurant_lists.restaurants[i].restaurant.id%>'"class="waves-effect waves-light btn-small">SHOW DETAILS</a></li></center    >
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-        </div>
             </div>
+
             <%}%>
+
         </div>
-            </body>
-   <!-- <footer><center><font color="white">&copy;SHANTANU JAISWAL</font></center></footer>-->
-    <!-- <footer><center> <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="waves-effect"><a href="#!">3</a></li>
-    <li class="waves-effect"><a href="#!">4</a></li>
-    <li class="waves-effect"><a href="#!">5</a></li>
-    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-         </ul></center></footer>-->
-        </html>
+    </body>
+    <center>  <div id="footer"   class="pagination">
+        <a id="search_btn0" onclick="search_info(this);" >&laquo;</a>
+        <a id="search_btn1" onclick="search_info(this);" >1</a>
+        <a id="search_btn2" onclick="search_info(this);" >2</a>
+        <a id="search_btn3" onclick="search_info(this);" >3</a>
+        <a id="search_btn4" onclick="search_info(this);" >&raquo;</a>
+        </div></center>
+    <!-- <footer><center><font color="white">&copy;SHANTANU JAISWAL</font></center></footer>-->
+</html>

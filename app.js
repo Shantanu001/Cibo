@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 app.use('/',index);
+app.use('/index',index);
 app.use('/about',about);
 
 app.set('views',path.join(__dirname,'views'));
